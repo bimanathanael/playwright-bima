@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Playwright test results
+test-results/
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# Playwright browser binaries (optional)
+.playwright/
+
+# Coverage reports (if using coverage tools like NYC)
+coverage/
