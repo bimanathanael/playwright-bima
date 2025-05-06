@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate": "node generate-test-files.js",
-    "test": "npx playwright test tests/upload.spec.js",
-    "test:debug": "npx playwright test tests/upload.spec.js --debug",
+    "test": "npx playwright test tests",
+
+    "test:ui-generate": "node generate-test-files.js",
+    "test:ui": "npx playwright test tests/test-ui/upload.spec.js",
+    "test:ui-debug": "npx playwright test tests/test-ui/upload.spec.js --debug",
     "test:headed": "npx playwright test --headed",
+    
+    "test:api": "npx playwright test tests/test-api",
     "test:report": "npx playwright show-report"
   },
   "keywords": [],
