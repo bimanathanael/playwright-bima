@@ -1,37 +1,62 @@
 // pages/UploadPage.js
+
 class UploadPage {
     constructor(page) {
-      this.page = page;
-      this.fileInput = page.locator('input[id="file-upload"]');
-      this.submitButton = page.locator('#file-submit');
-      this.header = page.locator('h3');
-      this.uploadedFileName = page.locator('#uploaded-files');
+        this.page = page;
+        this.selectors = {
+            fileInput: page.locator('#file-upload'),
+            uploadButton: page.locator('#file-submit'),
+            resultHeader: page.locator('h3'),
+            errorHeader: page.locator('h1'),
+            uploadedFile: page.locator('#uploaded-files'),
+        };
     }
   
-    async goto() {
-      await this.page.goto('https://the-internet.herokuapp.com/upload');
+    async navigate() {
+        await this.page.goto('https://the-internet.herokuapp.com/upload');
     }
   
-    async uploadFile(filePath) {
-      await this.fileInput.setInputFiles(filePath);
-      await this.submitButton.click();
+    async upload(filePath) {
+        await this.selectors.fileInput.setInputFiles(filePath);
+        await this.selectors.uploadButton.click();
+    }
+  
+    async uploadMultiple(filePath1, filePath2) {
+        await this.selectors.fileInput.setInputFiles(filePath1, filePath2);
+        await this.selectors.uploadButton.click();
+    }
+  
+    async uploadWithoutFile() {
+        await this.selectors.uploadButton.click();
+    }
+  
+    async getResultMessage() {
+        const headerText = await this.selectors.resultHeader.textContent();
+        return headerText?.trim();
+    }
+  
+    async getResultMessageError() {
+        const headerText = await this.selectors.errorHeader.textContent();
+        return headerText?.trim();
     }
   
     async getUploadedFileName() {
-      return (await this.uploadedFileName.textContent()).trim();
+        const fileText = await this.selectors.uploadedFile.textContent();
+        return fileText?.trim();
     }
   
-    async getHeaderText() {
-      return await this.header.textContent();
+    async isUploadFieldVisible() {
+        return this.selectors.fileInput.isVisible();
     }
   
-    async isFileInputVisible() {
-      return await this.fileInput.isVisible();
+    async isUploadFieldEnabled() {
+        return this.selectors.fileInput.isEnabled();
     }
   
-    async isFileInputEnabled() {
-      return await this.fileInput.isEnabled();
+    async clearFile() {
+        await this.selectors.fileInput.setInputFiles([]); // Reset file input
     }
   }
   
   module.exports = { UploadPage };
+  

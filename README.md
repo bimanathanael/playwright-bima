@@ -1,48 +1,45 @@
 
-# 🎭 Playwright File Upload Test Suite
+# Playwright File Upload Tests
 
-This project tests the file upload functionality at [the-internet.herokuapp.com/upload](https://the-internet.herokuapp.com/upload) using Playwright with JavaScript and the Page Object Model (POM) structure.
+This is a simple Playwright test project that checks how file uploads work on [the-internet.herokuapp.com/upload](https://the-internet.herokuapp.com/upload). It uses JavaScript and follows the Page Object Model (POM) pattern to keep things organized.
+
+Test case list : [Google Sheet](https://docs.google.com/spreadsheets/d/1wRNNuTaorq61xP0T0E4m8DpybgUiOdYYNkOqySu_LgM/edit?usp=sharing)
 
 ---
 
-## 📦 Project Structure
+## Project Layout
 
 ```
 playwright-bima/
 │
 ├── pages/
-│   └── UploadPage.js          # Page Object for Upload page
+│   └── UploadPage.js          # Code for interacting with the upload page
 │
 ├── tests/
-│   └── upload.spec.js         # Test cases using the POM
+│   └── upload.spec.js         # The actual test scenarios
 │
-├── test-files/
-│   ├── example.txt            # Valid sample file
-│   ├── empty.txt              # Empty file
-│   └── special@#$.txt         # Special character filename
+├── test-files/                # Sample file for upload, auto generated with command
 │
-├── playwright.config.js       # Playwright config file
-└── README.md
+├── playwright.config.js       # Playwright setup and settings
+└── README.md                  # Info file
 ```
 
 ---
 
-## 🚀 Getting Started
+## Before You Start
 
-### ✅ Prerequisites
+Make sure you have **Node.js** (version 16 or newer) installed.
 
-Ensure you have **Node.js** (v16 or later) installed.
-
-You can check your version with:
+Check by running:
 ```bash
 node -v
 ```
 
 ---
 
-### 🧰 Installation
+## Setup
 
-Clone the repository and install dependencies:
+Clone the repo and install the dependencies:
 
 ```bash
 git clone https://github.com/bimanathanael/playwright-bima.git
@@ -54,102 +51,31 @@ npx playwright install
 
 ---
 
-### 🧪 Running Tests
+## Running the Tests
+
+**First thing first** need to Generate test files:
+```bash
+npm run generate
+```
 
 To run **all tests**:
-
 ```bash
-npx playwright test
+npm run test
 ```
 
-To run a **specific test file**:
-
+To run debug **all tests**:
 ```bash
-npx playwright test tests/upload.spec.js
+npm run test:debug
 ```
 
-To run with **headed browser for debugging**:
-
+To check out the test results in a report:
 ```bash
-npx playwright test --headed
-```
-
-To open the **HTML report** after tests:
-
-```bash
-npx playwright show-report
+npm run test:report
 ```
 
 ---
 
-## 🧱 Writing Tests Using Page Object Model
+## About the Author
 
-The UploadPage class inside `pages/UploadPage.js` abstracts selectors and actions for the upload form.
+Created by [Bima Nathanael](mailto:bimanathanael95@gmail.com) — feel free to reach out.
 
-Each test case uses this Page Object for clarity and reuse:
-```javascript
-const { UploadPage } = require('../pages/UploadPage');
-
-const uploadPage = new UploadPage(page);
-await uploadPage.goto();
-await uploadPage.uploadFile('test-files/example.txt');
-```
-
----
-
-## 🧾 Example Test Case
-
-```javascript
-test('should upload a file and verify file name', async ({ page }) => {
-  const uploadPage = new UploadPage(page);
-  await uploadPage.goto();
-  await uploadPage.uploadFile('test-files/example.txt');
-  expect(await uploadPage.getUploadedFileName()).toBe('example.txt');
-});
-```
-
----
-
-## 📂 Test Files
-
-Make sure the test files exist under the `/test-files` folder. You can create them manually or use the following:
-
-```bash
-mkdir -p test-files
-echo "This is a sample file." > test-files/example.txt
-touch test-files/empty.txt
-echo "Special chars file" > test-files/special@#$.txt
-```
-
----
-
-## ⚙️ Example `playwright.config.js`
-
-```javascript
-// playwright.config.js
-import { defineConfig } from '@playwright/test';
-
-export default defineConfig({
-  testDir: './tests',
-  timeout: 10000,
-  retries: 0,
-  use: {
-    headless: true,
-    viewport: { width: 1280, height: 720 },
-    ignoreHTTPSErrors: true,
-    video: 'retain-on-failure',
-  },
-});
-```
-
----
-
-## 📃 License
-
-MIT — feel free to use and modify.
-
----
-
-## 👨‍💻 Author
-
-Built by [Your Name](mailto:your.email@example.com)

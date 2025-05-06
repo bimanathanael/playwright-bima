@@ -20,3 +20,7 @@ Thumbs.db
 
 # Coverage reports (if using coverage tools like NYC)
 coverage/
+
+# test files 
+test-files/
+test-files/empty.txt

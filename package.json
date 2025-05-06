@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "generate": "node generate-test-files.js",
     "test": "npx playwright test tests/upload.spec.js",
     "test:debug": "npx playwright test tests/upload.spec.js --debug",
     "test:headed": "npx playwright test --headed",
