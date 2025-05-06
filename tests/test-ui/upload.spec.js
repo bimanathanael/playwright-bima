@@ -1,10 +1,10 @@
 // tests/upload.spec.js
 const { test, expect } = require('@playwright/test');
 const path = require('path');
-const { UploadPage } = require('../pages/UploadPage');
+const { UploadPage } = require('../../pages/UploadPage');
 
 function getTestFilePath(fileName) {
-  return path.resolve(__dirname, '../test-files/', fileName);
+  return path.resolve(__dirname, '../../test-files/', fileName);
 }
 
 test.describe('Upload Page Tests', () => {
