@@ -1,7 +1,7 @@
 
 # Playwright File Upload Tests
 
-This is a simple Playwright test project that checks how file uploads work on [the-internet.herokuapp.com/upload](https://the-internet.herokuapp.com/upload). It uses JavaScript and follows the Page Object Model (POM) pattern to keep things organized.
+This is a simple Playwright test project that checks how file uploads work on [the-internet.herokuapp.com/upload](https://the-internet.herokuapp.com/upload), and [API Post behaviour](https://jsonplaceholder.typicode.com/posts)  It uses JavaScript and follows the Page Object Model (POM) for UI test and Service Object Model for API test pattern to keep things organized.
 
 Test case list : [Google Sheet](https://docs.google.com/spreadsheets/d/1wRNNuTaorq61xP0T0E4m8DpybgUiOdYYNkOqySu_LgM/edit?usp=sharing)
 
@@ -13,15 +13,26 @@ Test case list : [Google Sheet](https://docs.google.com/spreadsheets/d/1wRNNuTao
 playwright-bima/
 │
 ├── pages/
-│   └── UploadPage.js          # Code for interacting with the upload page
+│   └── UploadPage.js               # Code for interacting with the upload page 
+│
+├── services/
+│   └── getAllPostService.js        # Code for API GET method 
+│   └── getPostByIdPostService.js   # Code for API GET by id method
+│   └── createPostService.js        # Code for API POST method 
+│   └── updatePostService.js        # Code for API PUT/PATCH method 
+│   └── deletePostService.js        # Code for API DELETE method 
 │
 ├── tests/
-│   └── upload.spec.js         # The actual test scenarios
+│   └── test-api                    # test scenarios for API
+├── tests/
+│   └── test-ui                     # test scenarios UI
 │
-├── test-files/                # Sample file for upload, auto generated with command
+├── test-files/                     # Sample file for upload, auto generated with command
 │
-├── playwright.config.js       # Playwright setup and settings
-└── README.md                  # Info file
+├── playwright.config.js            # Playwright setup and settings
+├── playwright-report
+│   └── index.html                  # Report generated after run test 
+└── README.md                       # Info file
 ```
 
 ---
